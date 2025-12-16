@@ -212,7 +212,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Clear session and update UI
             sessionDoneList.clear();
-            renderResults(Array.from(resultsList.querySelectorAll('li')).map(li => li.dataset.id));
+            const displayedQuestionIds = Array.from(resultsList.querySelectorAll('li')).map(li => li.dataset.id);
+            const allQuestions = getFlattenedQuestions();
+            const questionsToRender = allQuestions.filter(q => displayedQuestionIds.includes(q.id));
+            renderResults(questionsToRender);
 
         } catch (error) {
             updateSyncStatus(`Error saving progress: ${error.message}`, true);
