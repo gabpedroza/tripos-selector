@@ -16,6 +16,7 @@ To sync your progress, the app needs a place to store it. You'll use a GitHub re
    - Select **Private**. This is important to keep your access token secure.
    - You don't need to add a README, .gitignore, or license.
    - Click "Create repository".
+   - Create a file, commit, delete the file, and commit again. This is to prevent an annoying bug.
 
 **b. Create a Personal Access Token (PAT):**
    - This token acts as a password for the app to access your repository.
