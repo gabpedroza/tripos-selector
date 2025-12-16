@@ -337,11 +337,18 @@ document.addEventListener('DOMContentLoaded', () => {
             checkbox.checked = sessionDoneList.has(q.id);
 
             const link = document.createElement('a');
-            const moduleClean = q.id.split('_')[0];
-            const yearClean = q.id.split('_')[2];
-            link.href = `https://camcribs.com/viewer?year=IB&type=tripos&module=${moduleClean}&id=QP_${yearClean}`;
+            const moduleClean = q.module;
+            const yearMatch = q.year.match(/\b((19|20)\d{2})\b/);
+            const yearClean = yearMatch ? yearMatch[0] : null;
+
+            if (yearClean) {
+                link.href = `https://camcribs.com/viewer?year=IB&type=tripos&module=${moduleClean}&id=QP_${yearClean}`;
+                link.target = '_blank';
+            } else {
+                link.href = '#';
+                link.title = 'Could not extract year for link';
+            }
             link.textContent = `${q.module} - ${q.paper} - ${q.year}`;
-            link.target = '_blank';
 
             li.appendChild(checkbox);
             li.appendChild(link);
