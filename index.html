@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tripos Practice Selector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tripos Practice Selector</h1>
+
+        <div class="card" id="github-controls">
+            <h2>GitHub Sync</h2>
+            <p>Store your progress in a private GitHub repository to sync across devices.</p>
+            <div class="form-grid">
+                <label for="github-repo">GitHub Repo (e.g., user/repo):</label>
+                <input type="text" id="github-repo" placeholder="username/tripos-practice">
+                
+                <label for="github-pat">Personal Access Token:</label>
+                <input type="password" id="github-pat" placeholder="ghp_...">
+            </div>
+            <div class="button-group">
+                <button id="load-progress-btn">Load Progress</button>
+                <button id="save-progress-btn">Save Selected to GitHub</button>
+            </div>
+            <div id="sync-status"></div>
+        </div>
+
+        <div class="card" id="generator-controls">
+            <h2>Generate Questions</h2>
+            <div class="form-grid">
+                <label for="num-questions">Number of questions:</label>
+                <input type="number" id="num-questions" value="5" min="1">
+
+                <label for="module-filter">Filter by Module:</label>
+                <select id="module-filter">
+                    <option value="all">All Modules</option>
+                </select>
+
+                <label for="paper-filter">Filter by Paper:</label>
+                <select id="paper-filter">
+                    <option value="all">All Papers</option>
+                </select>
+
+                <label for="selection-mode">Selection Mode:</label>
+                <div class="radio-group">
+                    <input type="radio" id="mode-random" name="selection-mode" value="random" checked>
+                    <label for="mode-random">Fully Random</label>
+                    <input type="radio" id="mode-homogeneous" name="selection-mode" value="homogeneous">
+                    <label for="mode-homogeneous">Homogeneous</label>
+                </div>
+            </div>
+            <button id="generate-btn">Generate</button>
+        </div>
+
+        <div class="card" id="results-container">
+            <h2>Generated Questions</h2>
+            <p id="results-placeholder">Your questions will appear here. Check the box next to a question and click "Save Selected" to mark it as done.</p>
+            <ul id="results-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
