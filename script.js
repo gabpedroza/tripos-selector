@@ -136,11 +136,33 @@ document.addEventListener('DOMContentLoaded', () => {
             ...options.headers,
         };
 
-        const response = await fetch(`https://api.github.com/repos/${repo}${url}`, { ...options, headers });
+        let response;
+        try {
+            response = await fetch(`https://api.github.com/repos/${repo}${url}`, { ...options, headers });
+        } catch (networkError) {
+            // This catches network-level errors (e.g., offline, DNS issues, CORS)
+            console.error('Network error:', networkError);
+            throw new Error('Network request failed. Are you offline?');
+        }
 
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`GitHub API Error: ${errorData.message || response.statusText}`);
+            const status = response.status;
+            let errorMessage = `GitHub API Error (Status ${status})`;
+            try {
+                const errorData = await response.json();
+                errorMessage += `: ${errorData.message || 'No specific message.'}`;
+            } catch (e) {
+                // Could not parse error JSON
+                errorMessage += `: ${response.statusText}`;
+            }
+             
+            if (status === 401) {
+                errorMessage += ' Check your Personal Access Token.';
+            } else if (status === 404) {
+                errorMessage += ' Check if the repository name is correct and the file exists.';
+            }
+            
+            throw new Error(errorMessage);
         }
         return response.json();
     }
@@ -158,7 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
             masterDoneList = new Set(doneItems);
             updateSyncStatus(`Successfully loaded ${masterDoneList.size} completed questions.`, false);
         } catch (error) {
-            if (error.message.includes("Not Found")) {
+            // Check for status code in the error message, e.g., "GitHub API Error (Status 404)"
+            if (error.message.includes("404")) {
                 updateSyncStatus(`'${progressFilePath}' not found in repo. A new one will be created on save.`, false);
                 masterDoneList = new Set();
             } else {
@@ -191,8 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 githubFileSha = fileData.sha;
             } catch (error) {
                 // If file doesn't exist, SHA is null and it will be created
-                if (!error.message.includes("Not Found")) throw error;
-                githubFileSha = null; 
+                if (error.message.includes("404")) {
+                    githubFileSha = null;
+                } else {
+                    throw error; // Re-throw other errors
+                }
             }
 
             const body = {
