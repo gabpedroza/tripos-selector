@@ -229,8 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.createElement('div');
         header.className = 'problem-header';
         header.innerHTML = `
-            <h3>${item.question.module} - ${item.question.topic}</h3>
-            <div class="problem-meta">${item.question.raw}</div>
+            <h3>${item.question.module} - ${item.question.raw}</h3>
+            <div class="problem-meta">${item.question.topic}</div>
         `;
         card.appendChild(header);
 
