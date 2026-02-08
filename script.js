@@ -158,9 +158,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             selectedTopics = [...dueTopics];
             const needed = numProblems - selectedTopics.length;
-            const otherTopics = allTopics.filter(t => !selectedTopics.includes(t));
-            shuffleArray(otherTopics);
-            selectedTopics = selectedTopics.concat(otherTopics.slice(0, needed));
+            const pendingTopics = allTopics.filter(t => !dueTopics.includes(t));
+            
+            // Sort pending topics by due date (closest to now first)
+            pendingTopics.sort((a, b) => {
+                const dueA = new Date(appState.progress.topics[a.id].due);
+                const dueB = new Date(appState.progress.topics[b.id].due);
+                return dueA - dueB;
+            });
+            
+            selectedTopics = selectedTopics.concat(pendingTopics.slice(0, needed));
         }
 
         appState.currentSession = [];
