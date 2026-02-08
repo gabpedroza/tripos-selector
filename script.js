@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const PROGRESS_FILE_PATH = 'progress.json';
     
     // FSRS Constants (Standard v4.5 Default Parameters)
-    const FSRS_PARAMS = {
+    const FSRS_PARAMS = {   
         w: [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61],
         request_retention: 0.9,
         maximum_interval: 36500,
@@ -165,6 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         appState.currentSession = [];
         const historySet = new Set(appState.progress.history);
+        
+        // Pre-calculate last index for each history item for efficient lookup
+        const lastIndexMap = new Map();
+        appState.progress.history.forEach((id, idx) => {
+            lastIndexMap.set(id, idx);
+        });
 
         selectedTopics.forEach(topic => {
             const parts = topic.id.split('::');
@@ -177,21 +183,36 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!Array.isArray(questions)) return;
 
-            const availableQuestions = questions.map(qStr => {
-                return {
-                    id: `${modName}::${topicName}::${qStr}`,
-                    legacyId: `${modName}_${topicName}_${qStr}`,
-                    raw: qStr,
-                    module: modName,
-                    topic: topicName
-                };
-            }).filter(q => !historySet.has(q.id) && !historySet.has(q.legacyId));
+            const allQuestions = questions.map(qStr => ({
+                id: `${modName}::${topicName}::${qStr}`,
+                legacyId: `${modName}_${topicName}_${qStr}`,
+                raw: qStr,
+                module: modName,
+                topic: topicName
+            }));
 
-            if (availableQuestions.length > 0) {
-                const randomQ = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+            const unseenQuestions = allQuestions.filter(q => !historySet.has(q.id) && !historySet.has(q.legacyId));
+
+            let selectedQuestion = null;
+            if (unseenQuestions.length > 0) {
+                // Pick a random unseen question
+                selectedQuestion = unseenQuestions[Math.floor(Math.random() * unseenQuestions.length)];
+            } else {
+                // All questions seen or topic empty. Pick the one seen longest ago.
+                let oldestIndex = Infinity;
+                allQuestions.forEach(q => {
+                    const lastIdx = Math.max(lastIndexMap.get(q.id) ?? -1, lastIndexMap.get(q.legacyId) ?? -1);
+                    if (lastIdx < oldestIndex) {
+                        oldestIndex = lastIdx;
+                        selectedQuestion = q;
+                    }
+                });
+            }
+
+            if (selectedQuestion) {
                 appState.currentSession.push({
                     sessionId: Math.random().toString(36).substr(2, 9), // Temp ID for UI
-                    question: randomQ,
+                    question: selectedQuestion,
                     mainTopicId: topic.id,
                     selectedTopics: new Set([topic.id]), // Default selection
                     isDone: false
@@ -200,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (appState.currentSession.length === 0) {
-            alert("No new questions available for the selected topics! You've completed everything!");
+            alert("No questions found for the selected topics!");
             return;
         }
 
