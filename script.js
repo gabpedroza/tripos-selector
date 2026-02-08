@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetSession();
     }
 
-    // --- FSRS Implementation (Simplified v4.5) ---
+    // --- FSRS Implementation (Simplified v4) ---
     // Why simple? We only need the current State (S, D) to calculate the next interval. 
     // We don't need to store the full review log for the algorithm to work, making progress.json compact.
     const FSRS = {
@@ -106,12 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
             nextD = FSRS.MeanReversion(w[4], nextD);
             nextD = Math.max(1, Math.min(10, nextD));
 
+            const retrievability = Math.pow(1 + elapsedDays / (9 * prevS), -1);
             if (rating === FSRS.Rating.Again) {
-                 const nextS = w[11] * Math.pow(nextD, -w[12]) * (Math.pow(prevS + 1, w[13]) - 1) * Math.exp(w[14] * (1 - FSRS_PARAMS.request_retention));
+                 const nextS = w[11] * Math.pow(nextD, -w[12]) * (Math.pow(prevS + 1, w[13]) - 1) * Math.exp(w[14] * (1 - retrievability));
                  return { s: nextS, d: nextD, state: FSRS.State.Relearning };
             }
 
-            const retrievability = Math.pow(1 + elapsedDays / (9 * prevS), -1);
+            
             let hardPenalty = rating === FSRS.Rating.Hard ? w[15] : 1;
             let easyBonus = rating === FSRS.Rating.Easy ? w[16] : 1;
 
