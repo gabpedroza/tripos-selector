@@ -145,10 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const allTopics = getAllTopics();
         
         const now = new Date();
-        const dueTopics = allTopics.filter(t => {
+        /*const dueTopics = allTopics.filter(t => {
             const topicData = appState.progress.topics[t.id];
             if (!topicData) return true; 
             return new Date(topicData.due) <= now;
+        });*/
+        const dueTopics = allTopics.filter(t => {
+            if(t.module == "2P3") return true;
+            return false;
         });
 
         let selectedTopics = [];
