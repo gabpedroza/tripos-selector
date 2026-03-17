@@ -168,12 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             selectedTopics = [...dueTopics];
             const needed = numProblems - selectedTopics.length;
-            const pendingTopics = allTopics.filter(t => !dueTopics.includes(t));
+            const pendingTopics = allTopics.filter(t => !dueTopics.includes(t) && allowedModules.includes(t.module));
             
             // Sort pending topics by due date (closest to now first)
             pendingTopics.sort((a, b) => {
                 if(!appState.progress.topics[a.id] || !appState.progress.topics[b.id]){
-                    return Math.random();
+                    return Math.random()-0.5;
                 }else{
                     const dueA = new Date(appState.progress.topics[a.id].due);
                     const dueB = new Date(appState.progress.topics[b.id].due);
