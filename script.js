@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setupCard: document.getElementById('practice-setup'),
         numProblemsInput: document.getElementById('num-problems'),
+        allowedModules: document.getElementById('allowed-modules'),
         startSessionBtn: document.getElementById('start-session-btn'),
         
         sessionCard: document.getElementById('active-session'),
@@ -143,17 +144,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const numProblems = parseInt(dom.numProblemsInput.value, 10) || 3;
         const allTopics = getAllTopics();
-        
+        const allowedModules = dom.allowedModules.replace(/\s/g, '').split(',');
+
         const now = new Date();
-        /*const dueTopics = allTopics.filter(t => {
+        const dueTopics = allTopics.filter(t => {
             const topicData = appState.progress.topics[t.id];
+            if (!allowedModules.includes(t.module)) return false;
             if (!topicData) return true; 
             return new Date(topicData.due) <= now;
-        });*/
-        const dueTopics = allTopics.filter(t => {
+        });
+        /*const dueTopics = allTopics.filter(t => {
             if(t.module == "2P3") return true;
             return false;
-        });
+        });*/
 
         let selectedTopics = [];
         shuffleArray(dueTopics);
