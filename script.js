@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const numProblems = parseInt(dom.numProblemsInput.value, 10) || 3;
         const allTopics = getAllTopics();
-        const allowedModules = dom.allowedModules.value.replace(/\s/g, '').split(',');
+        const allowedModules = dom.allowedModules.value.replace(/\s+/g, '').split(',');
 
         const now = new Date();
         const dueTopics = allTopics.filter(t => {
