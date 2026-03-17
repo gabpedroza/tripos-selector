@@ -172,9 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Sort pending topics by due date (closest to now first)
             pendingTopics.sort((a, b) => {
-                const dueA = new Date(appState.progress.topics[a.id].due);
-                const dueB = new Date(appState.progress.topics[b.id].due);
-                return dueA - dueB;
+                if(!appState.progress.topics[a.id] || !appState.progress.topics[b.id]){
+                    return Math.random();
+                }else{
+                    const dueA = new Date(appState.progress.topics[a.id].due);
+                    const dueB = new Date(appState.progress.topics[b.id].due);
+                    return dueA - dueB;
+                }
             });
             
             selectedTopics = selectedTopics.concat(pendingTopics.slice(0, needed));
