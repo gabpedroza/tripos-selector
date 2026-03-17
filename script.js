@@ -399,6 +399,12 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.textContent = ['Again (1)', 'Hard (2)', 'Good (3)', 'Easy (4)'][rating-1];
             
             btn.addEventListener('click', () => {
+                if(appState.progress.history.length < 2 && make_sure_toggle){
+                    updateStatus("Your history is short. Click again if you are sure there's no need to load progress.", true);
+                    make_sure_toggle = false;
+                    return;
+                }
+                make_sure_toggle = true;
                 handleCardRating(item, rating);
                 // Remove interface and mark completed visual
                 container.remove();
@@ -418,12 +424,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleCardRating(item, rating) {
-        if(appState.progress.history.length < 2 && make_sure_toggle){
-            updateStatus("Your history is short. Click again if you are sure there's no need to load progress.", true);
-            make_sure_toggle = false;
-            return;
-        }
-        make_sure_toggle = true;
         const now = new Date();
         item.isDone = true;
 
