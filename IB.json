@@ -5,14 +5,18 @@
             "Mechanisms: Accelerations, Acceleration Diagrams, Acceleration Image":["IB 2021 Q1", "IB 2018 Q2", "IB 2017 Q4", "IB 2016 Q3", "IB 2015 Q2", "IB 2013 Q2 Q4", "IB 2012 45",  "IA 2017 Q7", "IA 2016 Q9"],
             "Inertia forces in mechanisms":["2025","2024","2023","2022", "2015 Q1", "2016 Q1 Q3", "2018 Q2"],
             "Bending moments and shear forces in mechanisms":["2025","2024","2023","2022","2018 Q3", "2019 Q1", "2021 Q3"],
-            "3D kinematics and gyroscopic mechanics":["2025","2024","2023","2022","2017 Q3", "2019 Q3"]
-        
+            "3D kinematics and gyroscopic mechanics":["2025","2024","2023","2022","2017 Q3", "2019 Q3"],
+            "Lagrangian Mechanics":["2025","2024","2023","2022","2021","3C5 2004 Q4", "3C5 2005 Q5 (the force f is associated with a potential energy fx)", "3C5 2005 Q5a", "3C5 2006 Q4a-b", "IB sample paper 2019 Q4", "Revision sheet Q1"],
+            "1D dynamics and Effective potentials":["3C5 2014 Q4","3C5 2018 Q3", "IB sample paper 2019 Q6","Revision sheet Q2", "2P1 2019 Q1"],
+            "Normal Modes":["2025","2024","2023","2022","2021","3C5 2017 Q4", "3C5 2012 Q4", "3C5 2011 Q4", "3C5 2010 Q4", "3C5 2007 Q4", "3C5 2003 Q5", "IB sample paper 2019 Q5", "Revision sheet Q3 & Q4", "2P1 2019 Q6"],
+            "Time varying Lagrangians":["2025","2024","2023","2022","2021","3C5 2009 Q5", "3C5 2003 Q4", "2P1 2019 Q5"],
+            "Numerical integration and Chaos":["2025","2024","2023","2022","2021"]
         },
         "2P2":{
-            "Analysis of stress and strain; yield criteria":["2025/3", "2024/2", "2023/1", "2022/2", "2021/3,4"],
-            "Elastic structural analysis":["2025/1,2", "2024/1,3", "2023/3", "2022/1", "2021/1"],
-            "Symmetry and anti-symmetry; plastic theory (hinges)":["2025/4", "2024/4", "2023/2,4", "2022/2,5", "2021/2,5"],
-            "Plastic theory (slabs onwards)":["2025/5,6","2024/5,6", "2023/5,6", "2022/4,6", "2021/6"]
+            "Analysis of stress and strain; yield criteria":["2025/3", "2024/2", "2023/1", "2022/2", "2021/3,4","2019","2018", "2017","2016","2015"],
+            "Elastic structural analysis":["2025/1,2", "2024/1,3", "2023/3", "2022/1", "2021/1","2019","2018", "2017","2016","2015"],
+            "Symmetry and anti-symmetry; plastic theory (hinges)":["2025/4", "2024/4", "2023/2,4", "2022/2,5", "2021/2,5","2019","2018", "2017","2016","2015"],
+            "Plastic theory (slabs onwards)":["2025/5,6","2024/5,6", "2023/5,6", "2022/4,6", "2021/6","2019","2018", "2017","2016","2015"]
         },
         "2P3":{
             "Phase Diagrams":["2013: Q.4", "2014: Q.1", "2015: Q.1", "2016: Q.3", "2017: Q.1(a)", "2018: Q.2(b)", "2019: Q.1(a,b)", "2021: Q.2(a,b[i])", "2022: Q.4(a), 5", "2023: Q.6(a,b)", "2024: Q.6"],
@@ -24,11 +28,11 @@
             "Shaping processes for metals (continued); Polymer processing; Creep (materials at high temperatures)":["2008 Q4", "2009 Q1", "2010 Q3", "2011 Q1(a,c)&5", "2012 Q2", "2013 Q1&Q5", "2014 Q2", "2015 Q5","2016 Q6", "2017 Q4&Q6", "2018 Q3", "2019 Q3&6", "2021 Q4&5", "2022 Q3(b)&6", "2023 Q1(b),4&5(a)", "2024 Q3"]
         },
         "2P4":{
-            "Thermodynamics; Maximum available power; Gas Turbines; Working Fluids; Steam Power Plant":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
-            "Advanced Steam Power Plant; Refrigerators and Heat Pumps; Gas Mixtures and Psychrometry; Combustion":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
-            "Molecular vs continuum models; Changes due to motion through a field and the material derivative; Streamlines, pressure and acceleration in an incompressible inviscid flow; Viscous flow":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
-            "Dimensional analysis; Pipe flow and network analysis; Boundary Layers and Drag":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
-            "Heat transfer":["2022  Q3","2021  Q5","2019  Q1","2018  Q1","2017 Q1", "2016 Q1", "2015 Q1", "2014 Q3", "2013 Q1", "2012 Q1", "2011 Q3", "2010 Q1"]
+            "Thermodynamics; Maximum available power; Gas Turbines; Working Fluids; Steam Power Plant":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "Advanced Steam Power Plant; Refrigerators and Heat Pumps; Gas Mixtures and Psychrometry; Combustion":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "Molecular vs continuum models; Changes due to motion through a field and the material derivative; Streamlines, pressure and acceleration in an incompressible inviscid flow; Viscous flow":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "Dimensional analysis; Pipe flow and network analysis; Boundary Layers and Drag":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "Heat transfer":["2025","2024","2023","2022  Q3","2021  Q5","2019  Q1","2018  Q1","2017 Q1", "2016 Q1", "2015 Q1", "2014 Q3", "2013 Q1", "2012 Q1", "2011 Q3", "2010 Q1"]
         },
         "2P5":{
             "Bipolar Junction Transistor":["2025","2024","2023","2022","2021","2019","2018","2016 Q2", "2014 Q1, Q2", "2013 Q1", "2012 Q2", "2011 Q1", "2010 Q1", "2009 Q1"],
@@ -36,7 +40,9 @@
             "Three-Phase Circuits":["2015 Q3","2016 Q3","2017 Q3","2018 Q3","2019 Q3","2021 Q3","2023 Q3","2024 Q3 (except part (b))"],
             "Synchronous Machines":["2014 Q3", "2016 Q4 (part (a) only)", "2017 Q4 (part (b) only)", "2018 Q4", "2019 Q4", "2021 Q4", "2022 Q3", "2024 Q4 (except parts (a) and (c))"],
             "Transmission":["EP 4 Q1", "EP 4 Q2","EP 4 Q3","EP 4 Q4","EP 4 Q5"],
-            "Induction motors":["2014 -- Q5", "2015 -- Q5", "2022 -- Q4", "2023 -- Q4"]
+            "Induction motors":["2014 -- Q5", "2015 -- Q5", "2022 -- Q4", "2023 -- Q4"],
+            "Wave theory and transmission lines":["2025 Q5", "2024 Q6", "2023 Q5", "2022 Q5", "2021 Q5", "2019 Q6", "2018 Q7", "2017 Q7", "2016 Q7", "2015 Q7", "2014 Q6","2013 Q6", "2012 Q7"],
+            "Electromagnetic waves":["2025 Q6", "2024 Q5", "2023 Q6", "2022 Q6", "2021 Q6", "2019 Q7", "2018 Q6", "2017 Q6", "2016 Q6", "2015 Q6", "2014 Q7", "2013 Q7", "2012 Q6"]
         }, 
         "2P6":{
             "Qualitative description of feedback systems; Laplace transforms; Convolution integral; Transfer functions and block diagrams; Impulse and step responses":["2005 Q4(a)&(b)", "2006 Q3(b)&(c)", "2007 Q2(a)", "2008 Q3(a)", "2009 Q1(b)", "2010 Q1", "2011 Q1", "2013 Q3", "2015 Q3(a)", "2016 Q1", "2017 Q3(a)", "2018 Q1(a), Q3(a)", "2019 Q1(a)", "2023 Q1(a)"],
@@ -44,14 +50,18 @@
             "Feedback systems":["2005 Q1 and Q4", "2006 Q3", "2007 Q2 and Q3", "2008 Q2", "2010 Q1", "2011 Q1", "2012 Q1", "2013 Q3", "2014 Q1", "2015 Q3", "2016 Q1", "2017 Q1(b)", "2018 Q1(a)-(e) and Q3", "2019 Q1 and Q3", "2021 Q3", "2022 Q2", "2023 Q3(a)", "2024 Q2"],
             "Revision of complex numbers; Nyquist (polar) diagrams; Nyquist feedback stability theorem; Performance of feedback systems":["Q1 & 3 2024", "Q1-3 2023", "Q1 & 3 2022", "Q1 & 2 2021", "Q1 & 2 2019", "Q1 & 2 2018", "Q1 & 3 2017", "Q2 & 3 2016", "Q1 & 2 2015", "Q1 & 2 2013", "Q2 & 3 2012", "Q2 & 3 2011", "Q2 & 3 2010", "Q2 & 3 2009", "Q3 2008"],
             "Fourier Series and Systems; Fourier Transforms; Energy and Parseval's Theorem":["2025","2024","2023","2022","2021", "2019 q.4", "2018 q.4", "2017 q.4", "2016 q.4", "2015 q.4", "2014 q.4", "2013 q.4", "2012 q.4", "2011 q.4", "2010 q.4"],
-            "Sampling, Discrete Signals, the DFT":["2025","2024","2023","2022","2021","2019","2018", "2017", "2016", "2016","2014 q.5", "2013 q.5", "2012 q.5", "2011 q.5", "2010 q.5"]
+            "Sampling, Discrete Signals, the DFT":["2025","2024","2023","2022","2021","2019","2018", "2017", "2016", "2015","2014 q.5", "2013 q.5", "2012 q.5", "2011 q.5", "2010 q.5"],
+            "Analogue Modulation and Digitisation":["2025","2024","2023","2022","2021","2019","2018", "2017", "2016", "2015"],
+            "Digitisation, Digital Modulation, Multiple Access":["2025","2024","2023","2022","2021","2019","2018", "2017", "2016", "2015"]
         },
         "2P7":{
-            "Multiple Integration; Vectors and field lines; The Vector Gradient":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
-            "The Divergence; The Curl; Line integrals":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
-            "Surface Integrals; Gauss’s Theorem; Stokes’s Theorem":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
-            "Partial Differential Equations":["2025","2024","2023","2022","2021","2020","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "Multiple Integration; Vectors and field lines; The Vector Gradient":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "The Divergence; The Curl; Line integrals":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "Surface Integrals; Gauss’s Theorem; Stokes’s Theorem":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
+            "Partial Differential Equations":["2025","2024","2023","2022","2021","2019","2018", "2017","2016","2015","2014","2013","2012","2011","2010", "2009"],
             "Probability Fundamentals; Discrete distributions; Continuous distributions":["2024, 6. a) & b)", "2022, 6. a) & b)", "2019, 6.", "2016, 6.", "2011, 4. a)", "2009, 4.", "2023, 6.a)" ,"2021, 6.", "2018, 6.", "2013, 4.", "2010, 4. a)", "2006, 6. b), c) & d)"],
-            "Characterising Distributions; Combining and Manipulating Distributions; Probability and Moment Generating functions; Testing and Statistical Significance":["2023, 6. b) & c)", "2019, 6.", "2017, 6.", "2014, 4.", "2011, 4. b)", "2008, 4 a) - e).", "2024, 6. c) & d)", "2022, 6. c)", "2018, 6.", "2015, 5.", "2012, 4.", "2010, 4. b) - e)", "2007, 5 a) - d) & 6 a) - c)"]
+            "Characterising Distributions; Combining and Manipulating Distributions; Probability and Moment Generating functions; Testing and Statistical Significance":["2023, 6. b) & c)", "2019, 6.", "2017, 6.", "2014, 4.", "2011, 4. b)", "2008, 4 a) - e).", "2024, 6. c) & d)", "2022, 6. c)", "2018, 6.", "2015, 5.", "2012, 4.", "2010, 4. b) - e)", "2007, 5 a) - d) & 6 a) - c)"],
+            "Vector spaces; Matrix manipulation and LU Decomposition; Solution of equations and fundamental sub-spaces":["2025","2024","2023","2022","2021","2019","2018","2002 Q4 (a-c)", "2003 Q4", "2004 Q4", "2005 Q4 & 5", "2006 Q5a", "2007 Q4a", "2008 Q5 (a-c)", "2010 Q5"],
+            "Least squares; Gram-Schmidt and QR decomposition; Eigen-stuff; SVD":["2025","2024","2023","2022","2021","2019","2018","2002 Q4d, Q5", "2003 Q5", "2004 Q5", "2005 Q5", "2006 Q4", "2007 Q4", "2008 Q6"]
         }
 }
