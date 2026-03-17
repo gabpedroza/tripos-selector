@@ -418,6 +418,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleCardRating(item, rating) {
+        if(appState.progress.history.length < 2 && make_sure_toggle){
+            updateStatus("Your history is short. Click again if you are sure there's no need to load progress.", true);
+            make_sure_toggle = false;
+            return;
+        }
+        make_sure_toggle = true;
         const now = new Date();
         item.isDone = true;
 
@@ -588,12 +594,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function saveProgressToGithub() {
-        if(appState.progress.history.length < 2 && make_sure_toggle){
-            updateStatus("Your tripos history is rather short. Click again if you are sure.", true);
-            make_sure_toggle = false;
-            return;
-        }
-        make_sure_toggle = true;
         updateStatus('Saving...');
         //loadProgressFromGithub();
         const content = btoa(JSON.stringify(appState.progress, null, 2));
