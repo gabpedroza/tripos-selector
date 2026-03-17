@@ -173,7 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Sort pending topics by due date (closest to now first)
             pendingTopics.sort((a, b) => {
                 if(!appState.progress.topics[a.id] || !appState.progress.topics[b.id]){
-                    return Math.random()-0.5;
+                    throw new Error("NAO ERA PRA ACONTECER");
+                    
+                    //return Math.random()-0.5;
                 }else{
                     const dueA = new Date(appState.progress.topics[a.id].due);
                     const dueB = new Date(appState.progress.topics[b.id].due);
