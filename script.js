@@ -176,11 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error("NAO ERA PRA ACONTECER");
                     
                     //return Math.random()-0.5;
-                }else{
+                }
                     const dueA = new Date(appState.progress.topics[a.id].due);
                     const dueB = new Date(appState.progress.topics[b.id].due);
                     return dueA - dueB;
-                }
+                
             });
             
             selectedTopics = selectedTopics.concat(pendingTopics.slice(0, needed));
