@@ -149,8 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const now = new Date();
         const dueTopics = allTopics.filter(t => {
             const topicData = appState.progress.topics[t.id];
+            
+            if (!topicData && allowedModules.includes(t.module) ) return true; 
             if (!allowedModules.includes(t.module)) return false;
-            if (!topicData) return true; 
             return new Date(topicData.due) <= now;
         });
         /*const dueTopics = allTopics.filter(t => {
