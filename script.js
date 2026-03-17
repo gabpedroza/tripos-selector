@@ -589,6 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function saveProgressToGithub() {
         updateStatus('Saving...');
+        loadProgressFromGithub();
         const content = btoa(JSON.stringify(appState.progress, null, 2));
         
         try {
