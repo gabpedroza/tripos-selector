@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!allowedModules.includes(t.module)) return false;
             return new Date(topicData.due) <= now;
         });
+        updateStatus(`${allowedModules} ==> ${dueTopics}`)
         /*const dueTopics = allTopics.filter(t => {
             if(t.module == "2P3") return true;
             return false;
