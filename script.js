@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Configuration & Constants ---
     const GITHUB_API_BASE = 'https://api.github.com/repos';
     const PROGRESS_FILE_PATH = 'progress.json';
-    
+    make_sure_toggle = true;
     // FSRS Constants (Standard v4.5 Default Parameters)
     const FSRS_PARAMS = {   
         w: [0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61],
@@ -588,6 +588,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function saveProgressToGithub() {
+        if(appState.progress.history.length < 2 && make_sure_toggle){
+            updateStatus("Your tripos history is rather short. Click again if you are sure.", true);
+            make_sure_toggle = false;
+            return;
+        }
+        make_sure_toggle = true;
         updateStatus('Saving...');
         //loadProgressFromGithub();
         const content = btoa(JSON.stringify(appState.progress, null, 2));
