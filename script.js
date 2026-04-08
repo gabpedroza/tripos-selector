@@ -573,20 +573,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         updateSidebar();
-
-        // Check if all done
-        if (appState.currentSession.every(i => i.isDone)) {
-             setTimeout(() => {
-                 if(confirm("All problems completed! Finish session?")) {
-                     finishSession();
-                 }
-             }, 500);
-        }
     }
 
     function finishSession() {
         dom.sessionCard.style.display = 'none';
-        dom.completionCard.style.display = 'block';
+        dom.setupCard.style.display = 'block';
     }
 
     function resetSession() {
