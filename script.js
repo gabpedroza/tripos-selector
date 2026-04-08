@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.innerHTML = `
                 <div class="topic-progress-label">
                     <span title="${topicName}">${shortTopicName}</span>
-                    <span>${Math.round(completionPercent)}%</span>
+                    <span>${completedCount}/${totalQuestions}</span>
                 </div>
                 <div class="progress-bar-bg" title="Completion: ${completedCount}/${totalQuestions}">
                     <div class="progress-bar-fill mastery" style="width: ${completionPercent}%"></div>
