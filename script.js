@@ -45,7 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
         finishEarlyBtn: document.getElementById('finish-early-btn'),
 
         completionCard: document.getElementById('session-complete'),
-        restartBtn: document.getElementById('restart-btn')
+        restartBtn: document.getElementById('restart-btn'),
+
+        // Sidebar
+        sidebarTopicDropdown: document.getElementById('sidebar-topic-dropdown'),
+        topicProgressContainer: document.getElementById('topic-progress-container'),
+        sortStruggleChk: document.getElementById('sort-struggle-chk'),
+        sidebarToggle: document.getElementById('sidebar-toggle'),
+        sidebar: document.getElementById('left-sidebar'),
+        sidebarOverlay: document.getElementById('sidebar-overlay')
     };
 
     // --- Initialization ---
@@ -53,7 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function init() {
         loadLocalConfig();
-        fetchQuestionData();
+        fetchQuestionData().then(() => {
+            // Initial sidebar render after data is loaded
+            updateSidebar();
+        });
         setupEventListeners();
     }
 
@@ -64,6 +75,102 @@ document.addEventListener('DOMContentLoaded', () => {
         dom.startSessionBtn.addEventListener('click', startSession);
         dom.finishEarlyBtn.addEventListener('click', finishSession);
         dom.restartBtn.addEventListener('click', resetSession);
+        dom.sidebarTopicDropdown.addEventListener('change', updateSidebar);
+        dom.sortStruggleChk.addEventListener('change', updateSidebar);
+
+        // Sidebar Toggle Logic
+        dom.sidebarToggle.addEventListener('click', () => {
+            dom.sidebar.classList.toggle('active');
+            dom.sidebarOverlay.classList.toggle('active');
+        });
+
+        dom.sidebarOverlay.addEventListener('click', () => {
+            dom.sidebar.classList.remove('active');
+            dom.sidebarOverlay.classList.remove('active');
+        });
+    }
+
+    function updateSidebar() {
+        if (!appState.allQuestionsData) return;
+
+        const selectedModule = dom.sidebarTopicDropdown.value;
+        const allTopics = getAllTopics();
+        
+        // Populate dropdown if it only has the "All" option
+        if (dom.sidebarTopicDropdown.options.length <= 1) {
+            const modules = [...new Set(allTopics.map(t => t.module))].sort();
+            modules.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m;
+                opt.textContent = m;
+                dom.sidebarTopicDropdown.appendChild(opt);
+            });
+        }
+
+        let filteredTopics = selectedModule === 'all' 
+            ? allTopics 
+            : allTopics.filter(t => t.module === selectedModule);
+
+        // Sorting logic
+        if (dom.sortStruggleChk.checked) {
+            filteredTopics.sort((a, b) => {
+                const diffA = appState.progress.topics[a.id] ? appState.progress.topics[a.id].difficulty : 0;
+                const diffB = appState.progress.topics[b.id] ? appState.progress.topics[b.id].difficulty : 0;
+                return diffB - diffA; // Highest difficulty first
+            });
+        }
+
+        dom.topicProgressContainer.innerHTML = '';
+
+        filteredTopics.forEach(topic => {
+            const topicData = appState.progress.topics[topic.id];
+            const modName = topic.module;
+            const topicName = topic.name;
+            const questions = appState.allQuestionsData[modName][topicName];
+            const totalQuestions = questions.length;
+            
+            // Count completed questions for this topic
+            const historySet = new Set(appState.progress.history);
+            const completedCount = questions.filter(qStr => {
+                const qId = `${modName}::${topicName}::${qStr}`;
+                const legacyId = `${modName}_${topicName}_${qStr}`;
+                return historySet.has(qId) || historySet.has(legacyId);
+            }).length;
+
+            const completionPercent = (completedCount / totalQuestions) * 100;
+            
+            // FSRS difficulty 1-10. Let's map it. 1 is easy, 10 is hard.
+            const difficulty = topicData ? topicData.difficulty : 5;
+            const difficultyPercent = (difficulty / 10) * 100;
+
+            // Struggle color logic
+            let struggleClass = 'struggle-low';
+            if (difficulty > 7) struggleClass = 'struggle-high';
+            else if (difficulty > 4) struggleClass = 'struggle-med';
+
+            const item = document.createElement('div');
+            item.className = 'topic-progress-item';
+            
+            // Limit topic name length in sidebar
+            const shortTopicName = topicName.length > 40 ? topicName.substring(0, 37) + '...' : topicName;
+
+            item.innerHTML = `
+                <div class="topic-progress-label">
+                    <span title="${topicName}">${shortTopicName}</span>
+                    <span>${Math.round(completionPercent)}%</span>
+                </div>
+                <div class="progress-bar-bg" title="Completion: ${completedCount}/${totalQuestions}">
+                    <div class="progress-bar-fill mastery" style="width: ${completionPercent}%"></div>
+                </div>
+                <div class="progress-meta-info" style="display: flex; justify-content: space-between;">
+                    <span>Struggle: ${difficulty.toFixed(1)}/10</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 4px; margin-top: 2px;" title="Difficulty: ${difficulty.toFixed(1)}/10">
+                    <div class="progress-bar-fill ${struggleClass}" style="width: ${difficultyPercent}%"></div>
+                </div>
+            `;
+            dom.topicProgressContainer.appendChild(item);
+        });
     }
 
     function resetAllProgress() {
@@ -79,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         updateStatus('Progress reset locally. Save to GitHub to commit changes.', false);
+        updateSidebar();
         resetSession();
     }
 
@@ -464,6 +572,8 @@ document.addEventListener('DOMContentLoaded', () => {
             appState.progress.topics[topicId] = topicState;
         });
         
+        updateSidebar();
+
         // Check if all done
         if (appState.currentSession.every(i => i.isDone)) {
              setTimeout(() => {
@@ -572,6 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 appState.progress = json;
                 updateStatus(`Loaded progress. History: ${appState.progress.history.length}`, false);
             }
+            updateSidebar();
         } catch (error) {
             if (error.message.includes('404')) {
                 updateStatus('No progress file found. Starting fresh.', false);

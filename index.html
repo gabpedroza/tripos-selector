@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Sidebar">
+        ☰
+    </button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <div class="sidebar left-sidebar" id="left-sidebar">
+        <h3>Topic Progress</h3>
+        <div class="sidebar-controls">
+            <select id="sidebar-topic-dropdown">
+                <option value="all">All Modules</option>
+            </select>
+            <div style="margin-top: 10px; font-size: 0.85em;">
+                <label style="display: inline-flex; align-items: center; cursor: pointer; font-weight: normal;">
+                    <input type="checkbox" id="sort-struggle-chk" style="width: auto; margin-right: 8px;"> Sort by Struggle
+                </label>
+            </div>
+        </div>
+        <div id="topic-progress-container" class="progress-list">
+            <!-- Progress bars will be injected here -->
+        </div>
+    </div>
+
     <div class="container">
         <h1>Tripos Practice Selector</h1>
 
