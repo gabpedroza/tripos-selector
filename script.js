@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupCard: document.getElementById('practice-setup'),
         numProblemsInput: document.getElementById('num-problems'),
         allowedModules: document.getElementById('allowed-modules'),
+        randomModeChk: document.getElementById('random-mode-chk'),
         startSessionBtn: document.getElementById('start-session-btn'),
         
         sessionCard: document.getElementById('active-session'),
@@ -253,45 +254,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const numProblems = parseInt(dom.numProblemsInput.value, 10) || 3;
         const allTopics = getAllTopics();
         const allowedModules = dom.allowedModules.value.replace(/\s+/g, '').split(',');
+        const isRandomMode = dom.randomModeChk.checked;
 
         const now = new Date();
-        const dueTopics = allTopics.filter(t => {
-            const topicData = appState.progress.topics[t.id];
-            
-            if (!topicData && allowedModules.includes(t.module) ) return true; 
-            if (!allowedModules.includes(t.module)) return false;
-            return new Date(topicData.due) <= now;
-        });
-        //updateStatus(`${allowedModules} ==> ${dueTopics}`)
-        /*const dueTopics = allTopics.filter(t => {
-            if(t.module == "2P3") return true;
-            return false;
-        });*/
-
         let selectedTopics = [];
-        shuffleArray(dueTopics);
 
-        if (dueTopics.length >= numProblems) {
-            selectedTopics = dueTopics.slice(0, numProblems);
+        if (isRandomMode) {
+            const pool = allTopics.filter(t => allowedModules.includes(t.module));
+            shuffleArray(pool);
+            selectedTopics = pool.slice(0, numProblems);
         } else {
-            selectedTopics = [...dueTopics];
-            const needed = numProblems - selectedTopics.length;
-            const pendingTopics = allTopics.filter(t => !dueTopics.includes(t) && allowedModules.includes(t.module));
-            
-            // Sort pending topics by due date (closest to now first)
-            pendingTopics.sort((a, b) => {
-                if(!appState.progress.topics[a.id] || !appState.progress.topics[b.id]){
-                    throw new Error("NAO ERA PRA ACONTECER");
-                    
-                    //return Math.random()-0.5;
-                }
+            const dueTopics = allTopics.filter(t => {
+                const topicData = appState.progress.topics[t.id];
+                
+                if (!topicData && allowedModules.includes(t.module) ) return true; 
+                if (!allowedModules.includes(t.module)) return false;
+                return new Date(topicData.due) <= now;
+            });
+
+            shuffleArray(dueTopics);
+
+            if (dueTopics.length >= numProblems) {
+                selectedTopics = dueTopics.slice(0, numProblems);
+            } else {
+                selectedTopics = [...dueTopics];
+                const needed = numProblems - selectedTopics.length;
+                const pendingTopics = allTopics.filter(t => !dueTopics.includes(t) && allowedModules.includes(t.module));
+                
+                // Sort pending topics by due date (closest to now first)
+                pendingTopics.sort((a, b) => {
+                    if(!appState.progress.topics[a.id] || !appState.progress.topics[b.id]){
+                        return 0;
+                    }
                     const dueA = new Date(appState.progress.topics[a.id].due);
                     const dueB = new Date(appState.progress.topics[b.id].due);
                     return dueA - dueB;
+                });
                 
-            });
-            
-            selectedTopics = selectedTopics.concat(pendingTopics.slice(0, needed));
+                selectedTopics = selectedTopics.concat(pendingTopics.slice(0, needed));
+            }
         }
 
         appState.currentSession = [];

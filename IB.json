@@ -62,5 +62,10 @@
             "Characterising Distributions; Combining and Manipulating Distributions; Probability and Moment Generating functions; Testing and Statistical Significance":["2023, 6. b) & c)", "2019, 6.", "2017, 6.", "2014, 4.", "2011, 4. b)", "2008, 4 a) - e).", "2024, 6. c) & d)", "2022, 6. c)", "2018, 6.", "2015, 5.", "2012, 4.", "2010, 4. b) - e)", "2007, 5 a) - d) & 6 a) - c)"],
             "Vector spaces; Matrix manipulation and LU Decomposition; Solution of equations and fundamental sub-spaces":["2025","2024","2023","2022","2021","2019","2018","2002 Q4 (a-c)", "2003 Q4", "2004 Q4", "2005 Q4 & 5", "2006 Q5a", "2007 Q4a", "2008 Q5 (a-c)", "2010 Q5"],
             "Least squares; Gram-Schmidt and QR decomposition; Eigen-stuff; SVD":["2025","2024","2023","2022","2021","2019","2018","2002 Q4d, Q5", "2003 Q5", "2004 Q5", "2005 Q5", "2006 Q4", "2007 Q4", "2008 Q6"]
+        },
+        "2P8":{
+            "Firms":["2019 Q8","2019 Q9","2019 Q10", "2021 (Moodle) Q1","2021 (Moodle) Q2","2021 (Moodle) Q3","2021 (Moodle) Q4","2022 (Moodle) Q1","2022 (Moodle) Q2","2022 (Moodle) Q3","2022 (Moodle) Q4","2023 (Moodle) Q1","2023 (Moodle) Q2","2023 (Moodle) Q3","2023 (Moodle) Q4"],
+            "Strategy":["2019 Q5","2019 Q6","2019 Q7","2021 (Moodle) Q8","2021 (Moodle) Q9","2021 (Moodle) Q10","2022 (Moodle) Q8","2022 (Moodle) Q9","2022 (Moodle) Q10","2023 (Moodle) Q5","2023 (Moodle) Q6","2023 (Moodle) Q7"],
+            "Marketing":["2019 Q1","2019 Q2","2019 Q3","2019 Q4","2021 (Moodle) Q5","2021 (Moodle) Q6","2021 (Moodle) Q7","2022 (Moodle) Q5","2022 (Moodle) Q6","2022 (Moodle) Q7","2023 (Moodle) Q8","2023 (Moodle) Q9","2023 (Moodle) Q10"]
         }
 }
