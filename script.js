@@ -501,6 +501,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnGroup = document.createElement('div');
         btnGroup.className = 'rating-buttons';
 
+        const warningMsg = document.createElement('div');
+        warningMsg.style.color = 'var(--accent-color)';
+        warningMsg.style.fontWeight = 'bold';
+        warningMsg.style.marginTop = '10px';
+        warningMsg.style.textAlign = 'center';
+
         [1, 2, 3, 4].forEach(rating => {
             const btn = document.createElement('button');
             btn.className = 'rate-btn';
@@ -509,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             btn.addEventListener('click', () => {
                 if(appState.progress.history.length < 2 && make_sure_toggle){
-                    updateStatus("Your history is short. Click again if you are sure there's no need to load progress.", true);
+                    warningMsg.textContent = "Your history is short. Click again if you are sure there's no need to load progress.";
                     make_sure_toggle = false;
                     return;
                 }
@@ -529,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         container.appendChild(btnGroup);
+        container.appendChild(warningMsg);
         card.appendChild(container);
     }
 
